@@ -56,6 +56,9 @@ type Configurations struct {
 	// Specify the ldap group which have the same privilege with Harbor admin
 	LdapGroupAdminDn *string `json:"ldap_group_admin_dn,omitempty"`
 
+	// Attach LDAP user group information in parallel, the parallel worker count is 5
+	LdapGroupAttachParallel *bool `json:"ldap_group_attach_parallel,omitempty"`
+
 	// The attribute which is used as identity of the LDAP group, default is cn.'
 	LdapGroupAttributeName *string `json:"ldap_group_attribute_name,omitempty"`
 
