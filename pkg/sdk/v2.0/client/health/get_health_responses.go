@@ -12,7 +12,7 @@ import (
 	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/strfmt"
 
-	"github.com/goharbor/go-client/pkg/sdk/v2.0/models"
+	"github.com/paulbarfuss/harbor-go-client/pkg/sdk/v2.0/models"
 )
 
 // GetHealthReader is a Reader for the GetHealth structure.
