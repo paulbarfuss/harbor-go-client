@@ -1,4 +1,4 @@
-module github.com/goharbor/go-client
+module github.com/paulbarfuss/harbor-go-client
 
 go 1.17
 
@@ -8,6 +8,7 @@ require (
 	github.com/go-openapi/strfmt v0.21.0
 	github.com/go-openapi/swag v0.19.15
 	github.com/go-openapi/validate v0.20.3
+	github.com/goharbor/go-client v0.210.0
 	github.com/stretchr/testify v1.7.0
 )
 
@@ -22,8 +23,6 @@ require (
 	github.com/go-openapi/loads v0.21.0 // indirect
 	github.com/go-openapi/spec v0.20.4 // indirect
 	github.com/go-stack/stack v1.8.0 // indirect
-	github.com/google/go-cmp v0.5.6 // indirect
-	github.com/google/uuid v1.1.2 // indirect
 	github.com/josharian/intern v1.0.0 // indirect
 	github.com/mailru/easyjson v0.7.6 // indirect
 	github.com/mitchellh/mapstructure v1.4.1 // indirect
