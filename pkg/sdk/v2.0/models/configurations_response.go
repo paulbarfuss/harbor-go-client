@@ -57,6 +57,9 @@ type ConfigurationsResponse struct {
 	// Specify the ldap group which have the same privilege with Harbor admin
 	LdapGroupAdminDn *StringConfigItem `json:"ldap_group_admin_dn,omitempty"`
 
+	// Attach LDAP user group information in parallel.
+	LdapGroupAttachParallel *BoolConfigItem `json:"ldap_group_attach_parallel,omitempty"`
+
 	// The attribute which is used as identity of the LDAP group, default is cn.'
 	LdapGroupAttributeName *StringConfigItem `json:"ldap_group_attribute_name,omitempty"`
 
@@ -231,6 +234,10 @@ func (m *ConfigurationsResponse) Validate(formats strfmt.Registry) error {
 	}
 
 	if err := m.validateLdapGroupAdminDn(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateLdapGroupAttachParallel(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -639,6 +646,25 @@ func (m *ConfigurationsResponse) validateLdapGroupAdminDn(formats strfmt.Registr
 				return ve.ValidateName("ldap_group_admin_dn")
 			} else if ce, ok := err.(*errors.CompositeError); ok {
 				return ce.ValidateName("ldap_group_admin_dn")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *ConfigurationsResponse) validateLdapGroupAttachParallel(formats strfmt.Registry) error {
+	if swag.IsZero(m.LdapGroupAttachParallel) { // not required
+		return nil
+	}
+
+	if m.LdapGroupAttachParallel != nil {
+		if err := m.LdapGroupAttachParallel.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("ldap_group_attach_parallel")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("ldap_group_attach_parallel")
 			}
 			return err
 		}
@@ -1463,6 +1489,10 @@ func (m *ConfigurationsResponse) ContextValidate(ctx context.Context, formats st
 		res = append(res, err)
 	}
 
+	if err := m.contextValidateLdapGroupAttachParallel(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.contextValidateLdapGroupAttributeName(ctx, formats); err != nil {
 		res = append(res, err)
 	}
@@ -1829,6 +1859,22 @@ func (m *ConfigurationsResponse) contextValidateLdapGroupAdminDn(ctx context.Con
 				return ve.ValidateName("ldap_group_admin_dn")
 			} else if ce, ok := err.(*errors.CompositeError); ok {
 				return ce.ValidateName("ldap_group_admin_dn")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *ConfigurationsResponse) contextValidateLdapGroupAttachParallel(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.LdapGroupAttachParallel != nil {
+		if err := m.LdapGroupAttachParallel.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("ldap_group_attach_parallel")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("ldap_group_attach_parallel")
 			}
 			return err
 		}

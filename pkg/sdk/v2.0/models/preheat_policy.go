@@ -47,6 +47,9 @@ type PreheatPolicy struct {
 	// The Name of preheat policy provider
 	ProviderName string `json:"provider_name,omitempty"`
 
+	// The scope of preheat policy
+	Scope string `json:"scope,omitempty"`
+
 	// The Trigger of preheat policy
 	Trigger string `json:"trigger,omitempty"`
 

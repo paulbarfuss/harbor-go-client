@@ -58,6 +58,11 @@ type API interface {
 	   This endpoint is used to check if the project name provided already exist.*/
 	HeadProject(ctx context.Context, params *HeadProjectParams) (*HeadProjectOK, error)
 	/*
+	   ListArtifactsOfProject lists artifacts
+
+	   List artifacts of the specified project*/
+	ListArtifactsOfProject(ctx context.Context, params *ListArtifactsOfProjectParams) (*ListArtifactsOfProjectOK, error)
+	/*
 	   ListProjects lists projects
 
 	   This endpoint returns projects created by Harbor.*/
@@ -310,6 +315,33 @@ func (a *Client) HeadProject(ctx context.Context, params *HeadProjectParams) (*H
 		return nil, err
 	}
 	return result.(*HeadProjectOK), nil
+
+}
+
+/*
+ListArtifactsOfProject lists artifacts
+
+List artifacts of the specified project
+*/
+func (a *Client) ListArtifactsOfProject(ctx context.Context, params *ListArtifactsOfProjectParams) (*ListArtifactsOfProjectOK, error) {
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "listArtifactsOfProject",
+		Method:             "GET",
+		PathPattern:        "/projects/{project_name_or_id}/artifacts",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"http", "https"},
+		Params:             params,
+		Reader:             &ListArtifactsOfProjectReader{formats: a.formats},
+		AuthInfo:           a.authInfo,
+		Context:            ctx,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+	return result.(*ListArtifactsOfProjectOK), nil
 
 }
 
