@@ -9,7 +9,7 @@ import (
 
 	"github.com/go-openapi/runtime"
 	httptransport "github.com/go-openapi/runtime/client"
-	v2client "github.com/goharbor/go-client/pkg/sdk/v2.0/client"
+	v2client "github.com/paulbarfuss/harbor-go-client/pkg/sdk/v2.0/client"
 )
 
 // InsecureTransport provides a insecure RoundTripper and disable the HTTP2 try.

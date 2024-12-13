@@ -14,7 +14,7 @@ import (
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 
-	"github.com/goharbor/go-client/pkg/sdk/v2.0/models"
+	"github.com/paulbarfuss/harbor-go-client/pkg/sdk/v2.0/models"
 )
 
 // ListScannerCandidatesOfProjectReader is a Reader for the ListScannerCandidatesOfProject structure.
